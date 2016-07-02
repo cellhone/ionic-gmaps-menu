@@ -1,4 +1,4 @@
 angular.module('starter')
 
-.controller('starter', function($scope) {
+.controller('HogeCtrl', function($scope) {
 });
