@@ -1,7 +1,8 @@
 angular.module('starter')
 
-.controller('MapCtrl', function($scope, $state, $cordovaGeolocation) {
+.controller('MapCtrl', function($scope, $state, $cordovaGeolocation, $ionicLoading) {
   var options = {timeout: 10000, enableHighAccuracy: true};
+  $ionicLoading.show();
  
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
  
@@ -29,12 +30,14 @@ angular.module('starter')
       });
 
       google.maps.event.addListener(marker, 'click', function () {
-          infoWindow.open($scope.map, marker);
+        infoWindow.open($scope.map, marker);
       });
+              $ionicLoading.hide();
 
     });
  
   }, function(error){
     console.log("Could not get location");
+    $ionicLoading.hide();
   });
 });

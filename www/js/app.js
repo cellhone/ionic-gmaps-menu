@@ -41,6 +41,11 @@ angular.module('starter', ['ionic', 'ngCordova'])
     url: '/hoge',
     templateUrl: 'views/hoge.html',
     controller: 'HogeCtrl'
+  })
+  .state('login', {
+    url: '/login',
+    templateUrl: 'views/login.html',
+    controller: 'LoginCtrl'
   });
  
   $urlRouterProvider.otherwise("/");
