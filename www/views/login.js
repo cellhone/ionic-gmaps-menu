@@ -1,10 +1,10 @@
 angular.module('starter')
 
-.controller('LoginCtrl', function($scope) {
+.controller('LoginCtrl', function($scope, $window, Fullscreen) {
   $scope.imgsrc="http://xmpp.hplabs.jp/demo/push/lib/avator/makoto.jpg";
   
-  $scope.clickExpand = function() {
-    console.log('clickExpand');
+//  $scope.clickExpand = function() {
+//    console.log('clickExpand');
 //    if(!isFullscreen) {
 //        var body = document.body;
 //        if (body.webkitRequestFullScreen) {
@@ -28,7 +28,28 @@ angular.module('starter')
 //        isFullscreen = false;
 //    }
 //    location.reload();
-  }
+//    
+//  }
+  
+  
+   $scope.clickExpand = function () {
+      // Fullscreen
+      if (Fullscreen.isEnabled())
+         Fullscreen.cancel();
+      else
+         Fullscreen.all();
+
+      // Set Fullscreen to a specific element (bad practice)
+      // Fullscreen.enable( document.getElementById('img') )
+   };
+
+   $scope.isFullScreen = false;
+
+   $scope.goFullScreenViaWatcher = function() {
+      $scope.isFullScreen = !$scope.isFullScreen;
+   };
+    
+  
   
   $scope.clicImage = function() {
     console.log('clicImage');
@@ -38,7 +59,11 @@ angular.module('starter')
     console.log('clickLogin');
   }
   
+  $scope.clickClear = function() {
+    console.log('clickClear');
+    $window.location.reload(true);
+  }
   
-  var isFullscreen = false;
-
+  
+  
 });
