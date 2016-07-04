@@ -1,6 +1,6 @@
 angular.module('starter')
 
-.controller('LoginCtrl', function($scope, $window, Fullscreen) {
+.controller('LoginCtrl', function($scope, $window, $localStorage, Fullscreen) {
   $scope.imgsrc="http://xmpp.hplabs.jp/demo/push/lib/avator/makoto.jpg";
   
 //  $scope.clickExpand = function() {
@@ -38,13 +38,8 @@ angular.module('starter')
          Fullscreen.cancel();
       else
          Fullscreen.all();
-
-      // Set Fullscreen to a specific element (bad practice)
-      // Fullscreen.enable( document.getElementById('img') )
    };
-
    $scope.isFullScreen = false;
-
    $scope.goFullScreenViaWatcher = function() {
       $scope.isFullScreen = !$scope.isFullScreen;
    };
@@ -64,6 +59,11 @@ angular.module('starter')
     $window.location.reload(true);
   }
   
-  
+  $scope.$storage = $localStorage.$default({
+    username: '',
+    password: '',
+    nickname: '名無しさん'
+  });
+  $scope.nickname = $scope.$storage.nickname;
   
 });
